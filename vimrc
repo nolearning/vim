@@ -68,6 +68,12 @@ Bundle 'lookupfile'
 Bundle 'javacomplete'  
 Bundle 'SuperTab'
 
+"javascript
+Bundle 'elzr/vim-json'
+
+"markdown
+Bundle 'plasticboy/vim-markdown'
+
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
@@ -142,6 +148,9 @@ command! -complete=command XcodeDebug call XcodeDebug()
 " Command-Return Starts the program in the debugger  
 :noremap <D-RETURN> :XcodeDebug 
 
+"json
+au BufRead,BufNewFile *.json set filetype=json
+map <leader>j :%!python -mjson.tool<RETURN>
 
 set backupdir=~/.vim/backup  
 set directory=~/.vim/backup
