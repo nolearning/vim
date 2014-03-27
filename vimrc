@@ -150,7 +150,7 @@ command! -complete=command XcodeDebug call XcodeDebug()
 
 "json
 au BufRead,BufNewFile *.json set filetype=json
-map <leader>j :%!python -mjson.tool<RETURN>
+map <leader>j <ESC>:%!json_xs -f json -t json-pretty<RETURN>
 
 set backupdir=~/.vim/backup  
 set directory=~/.vim/backup
