@@ -1,17 +1,32 @@
 set nocompatible             
 filetype off
 let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if has('win32')
+    let vimDir=expand('~/vimfiles')
+    let runOnWin=1
+else
+    let vimDir=expand('~/.vim')
+endif
+let bundleDir = expand(vimDir.'/bundle')
+let vundleDir=expand(bundleDir.'/vundle')
+let vundle_readme=expand(vundleDir.'/README.md')
+
 if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    execute "silent !mkdir " . bundleDir
+    execute  "silent !git clone https://github.com/gmarik/vundle " . vundleDir
     let iCanHazVundle=0
 endif
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if runOnWin==1
+    set rtp+=~/vimfiles/bundle/vundle/
+    let path='~/vimfiles/bundle'
+    call vundle#rc(path)
+else
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+endif
 Bundle 'gmarik/vundle'
 filetype plugin indent on
 
@@ -152,8 +167,13 @@ command! -complete=command XcodeDebug call XcodeDebug()
 au BufRead,BufNewFile *.json set filetype=json
 map <leader>j <ESC>:%!json_xs -f json -t json-pretty<RETURN>
 
-set backupdir=~/.vim/backup  
-set directory=~/.vim/backup
+if runOnWin==1
+    set backupdir=~/vimfiles/backup
+    set backupdir=~/vimfiles/backup
+else
+    set backupdir=~/.vim/backup  
+    set directory=~/.vim/backup
+endif
 
 set number
 syntax on
@@ -189,6 +209,10 @@ set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,utf-16,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+if runOnWin==1
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+endif
 set linespace=2
 
 "set lines=50 columns=128
