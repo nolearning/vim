@@ -1,6 +1,7 @@
 set nocompatible             
 filetype off
 let iCanHazVundle=1
+let runOnWin=0
 if has('win32')
     let vimDir=expand('~/vimfiles')
     let runOnWin=1
@@ -168,11 +169,13 @@ au BufRead,BufNewFile *.json set filetype=json
 map <leader>j <ESC>:%!json_xs -f json -t json-pretty<RETURN>
 
 if runOnWin==1
-    set backupdir=~/vimfiles/backup
-    set backupdir=~/vimfiles/backup
+    set backupdir=~/vimfiles/.backup//
+    set undodir=~/vimfiles/.undo//
+    set directory=~/vimfiles/.swp//
 else
-    set backupdir=~/.vim/backup  
-    set directory=~/.vim/backup
+    set backupdir=~/.vim/.backup//  
+    set undodir=~/.vim/.undo//
+    set directory=~/.vim/.swp//
 endif
 
 set number
@@ -205,6 +208,7 @@ set ttyfast
 set backspace=indent,eol,start
 set laststatus=2
 set undofile
+set backup
 set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
