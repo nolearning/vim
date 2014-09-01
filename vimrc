@@ -45,7 +45,7 @@ Bundle 'xml.vim'
 Bundle 'molokai'
 Bundle 'desert256.vim'
 Bundle 'Impact'
-Bundle 'matrix.vim'
+"Bundle 'matrix.vim'
 Bundle 'vibrantink'
 Bundle 'vividchalk.vim'
 
@@ -223,3 +223,10 @@ set linespace=2
 
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
+colorscheme molokai
+set relativenumber
+set foldenable
+set foldmethod=syntax
+set foldcolumn=0
+setlocal foldlevel=1
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
