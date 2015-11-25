@@ -169,13 +169,17 @@ au BufRead,BufNewFile *.json set filetype=json
 map <leader>j <ESC>:%!json_xs -f json -t json-pretty<RETURN>
 
 if runOnWin==1
-    set backupdir=~/vimfiles/.backup//
-    set undodir=~/vimfiles/.undo//
-    set directory=~/vimfiles/.swp//
+    set backupdir=~\\vimfiles\\.backup\\\\
+    set undodir=~\\vimfiles\\.undo\\\\
+    set directory=~\\vimfiles\\.swp\\\\
 else
     set backupdir=~/.vim/.backup//  
     set undodir=~/.vim/.undo//
     set directory=~/.vim/.swp//
+endif
+
+if !isdirectory(&backupdir)
+    silent execute '!mkdir ' . &backupdir . ' ' . &undodir . ' ' . &directory
 endif
 
 set number
