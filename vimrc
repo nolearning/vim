@@ -44,6 +44,7 @@ Bundle 'xml.vim'
 " Color
 Bundle 'molokai'
 Bundle 'desert256.vim'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'Impact'
 "Bundle 'matrix.vim'
 Bundle 'vibrantink'
@@ -227,7 +228,8 @@ set linespace=2
 
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-colorscheme molokai
+set background=dark
+colorscheme solarized
 set relativenumber
 set foldenable
 set foldmethod=syntax
