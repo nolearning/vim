@@ -31,65 +31,83 @@ endif
 Bundle 'gmarik/vundle'
 filetype plugin indent on
 
-" Syntax
-Bundle 'asciidoc.vim'
-Bundle 'confluencewiki.vim'
-"Bundle 'html5.vim'
+" File Navigation
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+
+" File Search tool
+Bundle 'kien/ctrlp.vim'
+
+"easymotion
+Bundle "easymotion/vim-easymotion"
+
+"Status Line
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+
+"Ouline
+Bundle 'majutsushi/tagbar'
+
+" Commenter
+Bundle 'scrooloose/nerdcommenter'
+
+" Syntax chcker
+Bundle 'vim-syntastic/syntastic'
+
+" Code Formatter
+Bundle 'Chiel92/vim-autoformat'
+
+" Auto Complete
+Bundle 'jiangmiao/auto-pairs'
+Bundle 'tpope/vim-surround'
+Bundle 'Valloric/YouCompleteMe'
+
+" Snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+"Git
+Bundle 'tpope/vim-fugitive'
+
+" Web
+Bundle 'pangloss/vim-javascript'
 Bundle 'mattn/emmet-vim'
-Bundle 'JavaScript-syntax'
-Bundle 'moin.vim'
-Bundle 'python.vim--Vasiliev'
-Bundle 'xml.vim'
-
-" Color
-Bundle 'molokai'
-Bundle 'desert256.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Impact'
-"Bundle 'matrix.vim'
-Bundle 'vibrantink'
-Bundle 'vividchalk.vim'
-
-" Ftplugin
-Bundle 'python_fold'
-
-" Indent
-Bundle 'IndentAnything'
-Bundle 'Javascript-Indentation'
-Bundle 'mako.vim--Torborg'
-Bundle 'gg/python.vim'
-
-" Plugin
-Bundle 'The-NERD-tree'
-Bundle 'AutoClose--Alves'
-Bundle 'auto_mkdir'
-Bundle 'cecutil'
-Bundle 'FencView.vim'
-Bundle 'jsbeautify'
-Bundle 'L9'
-Bundle 'Mark'
-Bundle 'matrix.vim'
-Bundle 'mru.vim'
-Bundle 'The-NERD-Commenter'
-Bundle 'restart.vim'
-Bundle 'css_color.vim'
-Bundle 'hallettj/jslint.vim'
-Bundle 'DoxygenToolkit.vim'
-Bundle 'tczengming/autoload_cscope.vim'  
-Bundle 'CmdlineComplete'  
-Bundle 'xptemplate'  
-Bundle 'Rip-Rip/clang_complete'  
-Bundle 'genutils'  
-Bundle 'lookupfile' 
-
-Bundle 'javacomplete'  
-Bundle 'SuperTab'
-
-"javascript
 Bundle 'elzr/vim-json'
+Bundle 'css_color.vim'
+
+" Python
+Bundle 'hdima/python-syntax'
+Bundle 'tmhedberg/SimpylFold'
+
+"Swift
+Bundle 'kballard/vim-swift'
+
+"rust
+Bundle 'rust-lang/rust.vim'
 
 "markdown
+Bundle 'godlygeek/tabular'
 Bundle 'plasticboy/vim-markdown'
+
+"XML
+Bundle 'xml.vim'
+
+Bundle 'ervandew/supertab'
+
+" Color
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'molokai'
+Bundle 'desert256.vim'
+Bundle 'Impact'
+Bundle 'vibrantink'
+Bundle 'vividchalk.vim'
+Bundle 'jnurmine/Zenburn'
+
+" Plugin
+Bundle 'pbrisbin/vim-mkdir'
+Bundle 'L9'
+Bundle 'mru.vim'
+Bundle 'DoxygenToolkit.vim'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -108,18 +126,77 @@ nnoremap <C-S-TAB> :tabprev<CR>
 "change leader
 let mapleader=","
 
+"Easymotion setting
+let g:Easymotion_smartcase = 1
+
+map <Leader><Leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>. <Plug>(easymotion-repeat)
+"nmap s <Plug>(easymotion-overwin-f2)
+
+"Statusline setting
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
+"airline setting
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_theme='lucius'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+set showtabline=2
+set noshowmode
+
+"tagbar
+nmap <F8> :TagbarToggle<CR>
+
+"completioin
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+"syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" let g:syntastic_<filetype>_checkers = ['<checker-name']
+" let g:syntastic_python_checkers = ['flake8']
+" let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_javascript_checkers = ['eslint']
+
+"snippets trigger configuration
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:ultiSnipsJumpForwardTrigger="<c-j>"
+let g:ultiSnipsJumpBackwardTrigger="<c-k>"
+
+"vim-autoformat setting
+map <leader>f :Autoformat<CR>
+autocmd FileType vim,tex let b:autoformat_autoindent=0
+"formatprograms setting
+"let g:formatter_yapf_style = 'pep8'
+
 " NERDTree options  
 " Auto change the root directory  
-let NERDTreeChDirMode=2  
+let g:NERDTreeChDirMode=2  
 let g:NERDTreeWinSize = 23 
 
 map <F3> :NERDTreeToggle<CR>
 imap <F3> <ESC>:NERDTreeToggle<CR>
 
 "NERD_commenter
-let NERDSpaceDelims=1
-let NERDCompactSexyComs=1
-
+let g:NERDSpaceDelims=1
+let g:NERDCompactSexyComs=1
 
 "DoxygenToolkit
 let g:DoxygenToolkit_authorName="nolearning - wang.zhenbin@gmail.com"
@@ -129,45 +206,15 @@ map <leader>df :Dox<CR>
 map <leader>db :DoxBlock<CR>
 map <leader>dc a /*  */<LEFT><LEFT>
 
-"javacomplete
-setlocal omnifunc=javacomplete#Complete
-autocmd FileType java inoremap <buffer> . .<C-X><C-O><C-P>
-
-
-"c, c++, objc complete
-let g:clang_snippets=1
-let g:clang_use_library=1
-let g:clang_close_preview=1
-let g:clang_complete_macros=1
-let g:clang_user_options='-stdlib=libc++ -std=c++11 -IIncludePath'
-let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
-if isdirectory(s:clang_library_path)
-    let g:clang_library_path=s:clang_library_path
-endif
-
-"xcode
-let filetype_m='objc'
-"update the :make command to tell Xcode to build  
-set makeprg=osascript\ -e\ \"tell\ application\ \\\"Xcode\\\"\"\ -e\ \"build\"\ -e\ \"end\ tell\"  
-     
-function! XcodeClean()  
-    silent execute ':!osascript -e "tell application \"Xcode\"" -e "Clean" -e "end tell"'  
-endfunction  
-command! -complete=command XcodeClean call XcodeClean()  
-     
-function! XcodeDebug()  
-    silent execute '!osascript -e "tell application \"Xcode\"" -e "Debug" -e "end tell"'  
-endfunction  
-command! -complete=command XcodeDebug call XcodeDebug()  
-     
-" Command-K cleans the project  
-:noremap <D-K>  :XcodeClean  
-" Command-Return Starts the program in the debugger  
-:noremap <D-RETURN> :XcodeDebug 
+"Web Setting
+let g:user_emmet_mode = 'a'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 "json
 au BufRead,BufNewFile *.json set filetype=json
 map <leader>j <ESC>:%!json_xs -f json -t json-pretty<RETURN>
+
 
 if runOnWin==1
     set backupdir=~\\vimfiles\\.backup\\\\
@@ -234,5 +281,7 @@ set relativenumber
 set foldenable
 set foldmethod=syntax
 set foldcolumn=0
+"let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_style_pythonic = 1
 setlocal foldlevel=1
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
