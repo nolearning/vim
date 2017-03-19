@@ -116,7 +116,7 @@ Plugin 'DoxygenToolkit.vim'
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
-    :BundleInstall
+    :PluginInstall
 endif
 
 call vundle#end()
