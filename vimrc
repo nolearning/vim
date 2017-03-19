@@ -9,111 +9,118 @@ else
     let vimDir=expand('~/.vim')
 endif
 let bundleDir = expand(vimDir.'/bundle')
-let vundleDir=expand(bundleDir.'/vundle')
+let vundleDir=expand(bundleDir.'/Vundle.vim')
 let vundle_readme=expand(vundleDir.'/README.md')
 
 if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     execute "silent !mkdir " . bundleDir
-    execute  "silent !git clone https://github.com/gmarik/vundle " . vundleDir
+    execute  "silent !git clone https://github.com/VundleVim/Vundle.vim" . vundleDir
     let iCanHazVundle=0
 endif
 
 if runOnWin==1
-    set rtp+=~/vimfiles/bundle/vundle/
+    set rtp+=~/vimfiles/bundle/Vundle.vim/
     let path='~/vimfiles/bundle'
-    call vundle#rc(path)
+    call vundle#begin(path)
 else
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/Vundle.vim/
+    call vundle#begin()
 endif
-Bundle 'gmarik/vundle'
-filetype plugin indent on
+
+Plugin 'VundleVim/Vundle.vim'
 
 " File Navigation
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 " File Search tool
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
 "easymotion
-Bundle "easymotion/vim-easymotion"
+Plugin 'easymotion/vim-easymotion'
 
 "Status Line
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 "Ouline
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
 " Commenter
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 
 " Syntax chcker
-Bundle 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic'
 
 " Code Formatter
-Bundle 'Chiel92/vim-autoformat'
+Plugin 'Chiel92/vim-autoformat'
 
 " Auto Complete
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'tpope/vim-surround'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-surround'
+Plugin 'Valloric/YouCompleteMe'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 "Git
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Web
-Bundle 'pangloss/vim-javascript'
-Bundle 'mattn/emmet-vim'
-Bundle 'elzr/vim-json'
-Bundle 'css_color.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
+Plugin 'elzr/vim-json'
+Plugin 'css_color.vim'
 
 " Python
-Bundle 'hdima/python-syntax'
-Bundle 'tmhedberg/SimpylFold'
+Plugin 'hdima/python-syntax'
+Plugin 'tmhedberg/SimpylFold'
 
 "Swift
-Bundle 'kballard/vim-swift'
+Plugin 'kballard/vim-swift'
 
 "rust
-Bundle 'rust-lang/rust.vim'
+Plugin 'rust-lang/rust.vim'
 
 "markdown
-Bundle 'godlygeek/tabular'
-Bundle 'plasticboy/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+"plantuml
+Plugin 'aklt/plantuml-syntax'
+Plugin 'scrooloose/vim-slumlord'
 
 "XML
-Bundle 'xml.vim'
+Plugin 'xml.vim'
 
-Bundle 'ervandew/supertab'
+Plugin 'ervandew/supertab'
 
 " Color
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'molokai'
-Bundle 'desert256.vim'
-Bundle 'Impact'
-Bundle 'vibrantink'
-Bundle 'vividchalk.vim'
-Bundle 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'molokai'
+Plugin 'desert256.vim'
+Plugin 'Impact'
+Plugin 'vibrantink'
+Plugin 'vividchalk.vim'
+Plugin 'jnurmine/Zenburn'
 
 " Plugin
-Bundle 'pbrisbin/vim-mkdir'
-Bundle 'L9'
-Bundle 'mru.vim'
-Bundle 'DoxygenToolkit.vim'
+Plugin 'pbrisbin/vim-mkdir'
+Plugin 'L9'
+Plugin 'mru.vim'
+Plugin 'DoxygenToolkit.vim'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
     :BundleInstall
 endif
+
+call vundle#end()
+filetype plugin indent on
 
 " Buffer
 nnoremap <C-RETURN> :bnext<CR>
@@ -239,7 +246,6 @@ set expandtab
 set showmatch
 
 set ignorecase smartcase
-set nowrapscan
 set ruler
 set incsearch
 set hlsearch
