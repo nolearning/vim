@@ -16,7 +16,7 @@ if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     execute "silent !mkdir " . bundleDir
-    execute  "silent !git clone https://github.com/VundleVim/Vundle.vim" . vundleDir
+    execute  "silent !git clone https://github.com/VundleVim/Vundle.vim " . vundleDir
     let iCanHazVundle=0
 endif
 
