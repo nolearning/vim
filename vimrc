@@ -122,6 +122,10 @@ endif
 call vundle#end()
 filetype plugin indent on
 
+" ESC
+imap jk <ESC>
+imap jj <ESC>
+
 " Buffer
 nnoremap <C-RETURN> :bnext<CR>
 nnoremap <C-S-RETURN> :bprevious<CR>
